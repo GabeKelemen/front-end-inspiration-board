@@ -3,6 +3,7 @@ import React from "react";
 import Card from "./components/Card";
 import Board from "./components/Board";
 import AddCardForm from "./components/AddCardForm";
+import AddBoardForm from "./components/AddBoardForm";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <section className="add_board_form">
           <h2>Add a Board</h2>
           <p>form to add new board goes here</p>
+          <AddBoardForm />
         </section>
 
         <section className="add_card_form">
