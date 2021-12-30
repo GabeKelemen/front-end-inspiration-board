@@ -1,16 +1,12 @@
 .App {
   font-family: "Poppins", sans-serif;
   background-color: rgb(236, 192, 228);
-
   text-align: center;
-  /* margin: 4em; */
-  /* background-color: #bac8e2; */
-  /* background-color: #282c34; */
-  color: rgb(5, 5, 5);
-  min-height: 100vh;
-  /* display: flex;
-  flex-direction: column; */
-  /* align-items: center;
-  justify-content: center; */
-  /* font-size: calc(10px + 1vmin); */
+  margin: 4em;
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1em;
 }

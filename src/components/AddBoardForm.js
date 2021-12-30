@@ -18,7 +18,7 @@ const AddBoardForm = (onAdd) => {
 
   return (
     <div className="container">
-      <p>Use this form to add a board</p>
+      <h3>Add a New Board</h3>
       <form className="add-form" onSubmit={onSubmitForm}>
         <div className="form-control">
           <label>Board Title</label>
@@ -31,7 +31,7 @@ const AddBoardForm = (onAdd) => {
         </div>
 
         <div className="form-control">
-          <label>Board Owner</label>
+          <label>Name of Board Owner</label>
           <input
             type="text"
             placeholder="Add Owner Name"
