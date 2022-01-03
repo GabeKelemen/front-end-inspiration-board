@@ -3,7 +3,6 @@ import "./AddCardForm.css";
 
 const AddCardForm = (onAdd) => {
   const [message, setMessage] = useState("");
-  // const [emoji, setEmoji] = useState("");
 
   const onSubmitForm = (event) => {
     event.preventDefault();
@@ -21,16 +20,16 @@ const AddCardForm = (onAdd) => {
 
       <form className="add-form" onSubmit={onSubmitForm}>
         <div className="form-control">
-          <label>Your Message</label>
+          <label>Card Message</label>
           <input
             type="text"
-            placeholder="Add Message"
+            placeholder="Add your message..."
             value={message}
             onChange={(event) => setMessage(event.target.value)}
           />
         </div>
       </form>
-      <input type="submit" value="Add Card Form" className="card_form_button" />
+      <input type="submit" value="Add Message" className="card_form_button" />
     </div>
   );
 };

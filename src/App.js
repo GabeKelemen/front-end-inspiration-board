@@ -1,41 +1,61 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Header from "./components/Header";
+
 import Card from "./components/Card";
-import Board from "./components/Board";
-import AddCardForm from "./components/AddCardForm";
-import AddBoardForm from "./components/AddBoardForm";
+import AddForms from "./components/AddForms";
 import BoardList from "./components/BoardList";
-import CardList from "./components/CardList";
 
 function App() {
-  const [board, setBoard] = useState([
-    { id: 1, title: "Leadership", owner: "Janeway" },
-    { id: 2, title: "Social Groups", owner: "Seven of Nine" },
-    { id: 3, title: "Engineering", owner: "Balana" },
-  ]);
+  const [allBoardsList, setAllBoardsList] = useState([]);
+  const [selectedBoard, setSelectedBoard] = useState({});
+  const [cardsList, setCardsList] = useState([]);
 
-  // const addCardForm = (message, emoji) => {
-  //   console.log(message, emoji)
+  const [count, setCount] = useState(0);
+  const incrementLikes = () => {
+    setCount(count + 1);
+  };
+
+  useEffect(() => {
+    axios
+      .get("https://mando-backend.herokuapp.com/boards")
+      .then((response) => {
+        console.log(response.data);
+        setAllBoardsList([...response.data.boards]);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+        alert("No boards found");
+      });
+  }, []);
+
+  const onSelectBoard = (board) => {
+    setSelectedBoard(board);
+  };
+  // need to get cards for selected board
+  // pass down to cardlist -- collection of card components
 
   return (
-    <div className="App">
-      <h1>Inspiration Board</h1>
-      <Board />
-      <div className="entire_board">
-        <section className="board_section">
-          <h2>Boards</h2>
-          <p>boards go here</p>
-          <BoardList />
+    <>
+      <Header />
+      <div className="App">
+        <p>Just for fun click </p>
+        <button onClick={incrementLikes}>{count}</button>
 
-          <section className="card_section">
-            <h2>Cards</h2>
-            <CardList />
-            <Card />
-            <Card />
-          </section>
+        <section>
+          <div className="board-container">
+            <p>board and board list go here</p>
+          </div>
+
+          <Card />
+        </section>
+
+        <section>
+          <AddForms />
         </section>
       </div>
-    </div>
+    </>
   );
 }
 

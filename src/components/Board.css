@@ -1,18 +1,19 @@
 .entire_board {
   background-color: #f31094;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .board {
-  background-color: #fff;
+  background-color: rgb(85, 4, 4);
   border-radius: 4px;
   box-shadow: 0 12px 14px 0 rgba(64, 95, 119, 0.302),
     0 12px 5px 2px rgba(56, 87, 110, 0.149);
-  display: grid;
+  display: block;
+
   margin: 0 auto;
   padding: 1rem;
-  width: 30%;
+  width: 40%;
   padding: 1em 0;
   margin: 3rem;
 
@@ -21,8 +22,4 @@
   flex-basis: 18%;
 
   border-radius: 5px;
-
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* grid-template-columns: 1fr 1fr 1fr; */
-  /* align-items: center; */
 }

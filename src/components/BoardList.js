@@ -1,11 +1,15 @@
-import Board from "./Board";
+import "./BoardList.css";
 
-const BoardList = () => {
-  // const boardsCreated
+const BoardList = (props) => {
+  const handleSelectBoard = () => {
+    props.onSelectBoard(props.board);
+  };
 
   return (
     <>
-      <h3>Board List</h3>
+      <section className="boardlist" onClick={handleSelectBoard}>
+        {props.board.title}
+      </section>
     </>
   );
 };

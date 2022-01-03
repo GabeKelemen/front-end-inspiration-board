@@ -8,7 +8,7 @@
   display: grid;
   margin: 0 auto;
   padding: 1rem;
-  width: 40%;
+  width: 60%;
   padding: 1em 0;
   margin: 3rem;
 
@@ -26,4 +26,24 @@ card__message {
   font-size: 1.5rem;
   font-weight: bold;
   color: #f31094;
+}
+
+.card__button {
+  background-color: #f31094;
+  width: 20px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+
+.delete__button {
+  background-color: #2b021a;
+  width: 20px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.5em 1em;
 }

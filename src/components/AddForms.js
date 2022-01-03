@@ -4,7 +4,7 @@ import Card from "./Card";
 import AddCardForm from "./AddCardForm";
 import AddBoardForm from "./AddBoardForm";
 
-const Board = (props) => {
+const AddForms = (props) => {
   const [cards, setCards] = useState(props.cards);
   const [board, setBoard] = useState(props.board);
   const [boardFormVisible, setBoardFormVisible] = useState(false);
@@ -23,7 +23,8 @@ const Board = (props) => {
   };
 
   return (
-    <>
+    <div className="entire_Board">
+      <p>board title</p>
       <div>
         <button onClick={toggleBoardForm}>{buttonTextForm}</button>
         <AddBoardForm
@@ -40,8 +41,8 @@ const Board = (props) => {
           }}
         />
       </div>
-    </>
+    </div>
   );
 };
 
-export default Board;
+export default AddForms;

@@ -1,0 +1,8 @@
+.boardlist {
+  background-color: #130202;
+  border-radius: 4px;
+  color: fuchsia;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  padding: 20px;
+}
