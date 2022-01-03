@@ -1,14 +1,14 @@
 .App {
   font-family: "Poppins", sans-serif;
-  background-color: rgb(236, 192, 228);
+  /* background-color: rgb(236, 192, 228); */
   padding: 100px;
-  text-align: center;
+  /* text-align: center; */
   margin: 4em;
-  /* display: grid; */
+  display: grid;
   /* flex-direction: column; */
-  /* align-items: center; */
+  /* align-items: center;*/
 
-  /* grid-template-columns: 1fr, 1fr, 1fr; */
-  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-  /* grid-gap: 1em; */
+  /* grid-template-columns: 1fr, 1fr, 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1em; */
 }

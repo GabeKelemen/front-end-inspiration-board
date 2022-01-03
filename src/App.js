@@ -9,20 +9,15 @@ import BoardList from "./components/BoardList";
 
 function App() {
   const [allBoardsList, setAllBoardsList] = useState([]);
-  const [selectedBoard, setSelectedBoard] = useState({});
+  const [selectedBoard, setSelectedBoard] = useState(1);
   const [cardsList, setCardsList] = useState([]);
-
-  const [count, setCount] = useState(0);
-  const incrementLikes = () => {
-    setCount(count + 1);
-  };
 
   useEffect(() => {
     axios
       .get("https://mando-backend.herokuapp.com/boards")
       .then((response) => {
         console.log(response.data);
-        setAllBoardsList([...response.data.boards]);
+        setAllBoardsList([...response.data]);
       })
       .catch((error) => {
         console.log("Error:", error);
@@ -30,7 +25,7 @@ function App() {
       });
   }, []);
 
-  const onSelectBoard = (board) => {
+  const selectBoard = (board) => {
     setSelectedBoard(board);
   };
   // need to get cards for selected board
@@ -40,15 +35,8 @@ function App() {
     <>
       <Header />
       <div className="App">
-        <p>Just for fun click </p>
-        <button onClick={incrementLikes}>{count}</button>
-
         <section>
-          <div className="board-container">
-            <p>board and board list go here</p>
-          </div>
-
-          <Card />
+          <BoardList boards={allBoardsList} selectBoard={selectBoard} />
         </section>
 
         <section>

@@ -1,16 +1,22 @@
 import "./BoardList.css";
+import Board from "./Board";
 
 const BoardList = (props) => {
-  const handleSelectBoard = () => {
-    props.onSelectBoard(props.board);
-  };
+  console.log(props);
+
+  const individualBoardComponents = props.boards.map((board) => {
+    return (
+      <li>
+        <Board board={board} selectBoard={props.selectBoard} />
+      </li>
+    );
+  });
 
   return (
-    <>
-      <section className="boardlist" onClick={handleSelectBoard}>
-        {props.board.title}
-      </section>
-    </>
+    <div className="boardlist">
+      <h2>Board List</h2>
+      <ol>{individualBoardComponents}</ol>
+    </div>
   );
 };
 
