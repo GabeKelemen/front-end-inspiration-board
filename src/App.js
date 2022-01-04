@@ -37,7 +37,11 @@ function App() {
       <Header />
       <div className="App">
         <section>
-          <BoardList boards={allBoardsList} OnSelectBoard={selectBoard} />
+          <BoardList
+            boards={allBoardsList}
+            OnSelectBoard={selectBoard}
+            selectedBoard={selectedBoard}
+          />
         </section>
 
         <section>

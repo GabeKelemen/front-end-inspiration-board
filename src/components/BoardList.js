@@ -5,16 +5,16 @@ import { useState } from "react";
 const BoardList = (props) => {
   console.log(props);
 
-  const [selectedBoard, setSelectedBoard] = useState(props.boards[1]);
+  // const [selectedBoard, setSelectedBoard] = useState(props.boards[1]);
 
-  const selectBoard = (board) => {
-    setSelectedBoard(board);
-  };
+  // const selectBoard = (board) => {
+  //   setSelectedBoard(board);
+  // };
 
   const individualBoardComponents = props.boards.map((board) => {
     return (
       <li key={board.id}>
-        <Board board={board} OnSelectBoard={selectBoard} />
+        <Board board={board} OnSelectBoard={props.OnSelectBoard} />
       </li>
     );
   });
@@ -28,7 +28,8 @@ const BoardList = (props) => {
 
       <div className="selectedboard">
         <h3>The Board You Selected:</h3>
-        <h2>{selectedBoard.title}</h2>
+
+        <h2>{props.selectedBoard.title}</h2>
       </div>
     </>
   );
