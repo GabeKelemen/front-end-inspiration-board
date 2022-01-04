@@ -29,13 +29,6 @@ function App() {
     setSelectedBoard(board);
   };
 
-  // const currentBoard = (boardId) => {
-  //   const board = allBoardsList.filter(
-  //     (board) => board.id === parseInt(boardId)
-  //   )[0];
-  //   setSelectedBoard(board);
-  // };
-
   // need to get cards for selected board
   // pass down to cardlist -- collection of card components
 

@@ -24,7 +24,6 @@ const AddForms = (props) => {
 
   return (
     <div className="entire_Board">
-      <p>board title</p>
       <div>
         <button onClick={toggleBoardForm}>{buttonTextForm}</button>
         <AddBoardForm
