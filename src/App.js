@@ -2,14 +2,14 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "./components/Header";
+import Board from "./components/Board";
 
-import Card from "./components/Card";
 import AddForms from "./components/AddForms";
 import BoardList from "./components/BoardList";
 
 function App() {
   const [allBoardsList, setAllBoardsList] = useState([]);
-  const [selectedBoard, setSelectedBoard] = useState(1);
+  const [selectedBoard, setSelectedBoard] = useState([1]);
   const [cardsList, setCardsList] = useState([]);
 
   useEffect(() => {
@@ -28,6 +28,14 @@ function App() {
   const selectBoard = (board) => {
     setSelectedBoard(board);
   };
+
+  // const currentBoard = (boardId) => {
+  //   const board = allBoardsList.filter(
+  //     (board) => board.id === parseInt(boardId)
+  //   )[0];
+  //   setSelectedBoard(board);
+  // };
+
   // need to get cards for selected board
   // pass down to cardlist -- collection of card components
 
@@ -36,7 +44,7 @@ function App() {
       <Header />
       <div className="App">
         <section>
-          <BoardList boards={allBoardsList} selectBoard={selectBoard} />
+          <BoardList boards={allBoardsList} OnSelectBoard={selectBoard} />
         </section>
 
         <section>
