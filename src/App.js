@@ -57,6 +57,27 @@ function App() {
     );
   });
 
+  // ======= ADD NEW CARD =======
+
+  const addNewCard = (card) => {
+    const newCard = {
+      message: card.message,
+    };
+
+    axios
+      .post(
+        `https://mando-backend.herokuapp.com/boards/${selectedBoard.id}/cards`,
+        newCard
+      )
+      .then((response) => {
+        console.log(response);
+        setCardsList(newCard);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  };
+
   return (
     <>
       <Header />

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./AddBoardForm.css";
 
 const AddBoardForm = (onAdd) => {
   const [title, setTitle] = useState("");

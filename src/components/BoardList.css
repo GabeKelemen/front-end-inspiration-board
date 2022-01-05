@@ -8,10 +8,8 @@
 }
 
 .selectedboard {
-  /* background-color: #130202; */
   background-color: fuchsia;
   border-radius: 4px;
-  /* color: fuchsia; */
   color: #130202;
   box-shadow: 13px 17px 12px rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;

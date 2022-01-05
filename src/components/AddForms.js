@@ -1,8 +1,9 @@
 import { useState } from "react";
-import "./Board.css";
+
 import Card from "./Card";
 import AddCardForm from "./AddCardForm";
 import AddBoardForm from "./AddBoardForm";
+import "./AddForms.css";
 
 const AddForms = (props) => {
   const [cards, setCards] = useState(props.cards);
@@ -23,24 +24,29 @@ const AddForms = (props) => {
   };
 
   return (
-    <div className="entire_Board">
-      <div>
-        <button onClick={toggleBoardForm}>{buttonTextForm}</button>
-        <AddBoardForm
-          onAdd={(card) => {
-            setCards([...cards, card]);
-          }}
-        />
+    <>
+      <div className="form__header">
+        <h1>Add a New Card or Board</h1>
       </div>
+      <section className="forms-panel">
+        <div>
+          <AddCardForm
+            onAdd={(card) => {
+              setCards([...cards, card]);
+            }}
+          />
+        </div>
 
-      <div>
-        <AddCardForm
-          onAdd={(card) => {
-            setCards([...cards, card]);
-          }}
-        />
-      </div>
-    </div>
+        <div>
+          <button onClick={toggleBoardForm}>{buttonTextForm}</button>
+          <AddBoardForm
+            onAdd={(card) => {
+              setCards([...cards, card]);
+            }}
+          />
+        </div>
+      </section>
+    </>
   );
 };
 

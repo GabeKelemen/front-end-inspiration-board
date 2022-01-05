@@ -25,6 +25,7 @@ const AddCardForm = (onAdd) => {
             type="text"
             placeholder="Add your message..."
             value={message}
+            maxLength="40"
             onChange={(event) => setMessage(event.target.value)}
           />
         </div>
