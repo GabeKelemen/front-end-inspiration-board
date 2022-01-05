@@ -12,6 +12,7 @@ function App() {
   const [allBoardsList, setAllBoardsList] = useState([]);
   const [selectedBoard, setSelectedBoard] = useState([]);
   const [cardsList, setCardsList] = useState([]);
+  const [boardFormDisplay, setBoardFormDisplay] = useState(false);
 
   // ======= GET ALL BOARDS =======
   useEffect(() => {
@@ -114,22 +115,19 @@ function App() {
   };
 
   // ======= TOGGLE FORM =======
-  // const [cards, setCards] = useState(props.cards);
 
-  // const [boardFormVisible, setBoardFormVisible] = useState(false);
-  // const [cardFormVisible, setCardFormVisible] = useState(false);
-  // const [buttonTextForm, setButtonTextForm] = useState(
-  //   "Display Add Board Form"
-  // );
+  const [buttonTextForm, setButtonTextForm] = useState(
+    "Display Add Board Form"
+  );
 
-  // const toggleBoardForm = () => {
-  //   setBoardFormVisible(!boardFormVisible);
-  //   if (boardFormVisible) {
-  //     setButtonTextForm("Hide Add Board Form");
-  //   } else {
-  //     setButtonTextForm("Display Add Board Form");
-  //   }
-  // };
+  const toggleBoardForm = () => {
+    setBoardFormDisplay(!boardFormDisplay);
+    if (boardFormDisplay) {
+      setButtonTextForm("Hide Add Board Form");
+    } else {
+      setButtonTextForm("Display Add Board Form");
+    }
+  };
 
   return (
     <>
@@ -146,8 +144,8 @@ function App() {
         <section className="card__display">{individualCardComponents}</section>
 
         <section>
-          {/* <button onClick={toggleBoardForm}>{buttonTextForm}</button> */}
           <AddForms />
+          <button onClick={toggleBoardForm}>{buttonTextForm}</button>
         </section>
       </div>
     </>

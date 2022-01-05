@@ -11,11 +11,12 @@ const AddForms = (props) => {
 
       <section className="forms-panel">
         <div>
-          <AddCardForm />
+          <AddBoardForm />
+          <p></p>
         </div>
 
         <div>
-          <AddBoardForm />
+          <AddCardForm />
         </div>
       </section>
     </>

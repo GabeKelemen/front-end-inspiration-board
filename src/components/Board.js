@@ -1,5 +1,3 @@
-import React from "react";
-
 const Board = (props) => {
   return (
     <div onClick={() => props.OnSelectBoard(props.board)}>
@@ -7,5 +5,4 @@ const Board = (props) => {
     </div>
   );
 };
-
 export default Board;
