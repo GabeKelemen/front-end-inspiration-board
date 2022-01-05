@@ -57,6 +57,26 @@ function App() {
     );
   });
 
+  // ======= ADD NEW BOARD =======
+
+  const addNewBoard = (board) => {
+    const newBoard = {
+      title: board.title,
+      owner: board.owner,
+    };
+    axios
+      .post("https://mando-backend.herokuapp.com/boards", newBoard)
+      .then((response) => {
+        console.log(response);
+        const allBoards = [...allBoardsList];
+        allBoards.push(response.data);
+        setAllBoardsList(allBoards);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  };
+
   // ======= ADD NEW CARD =======
 
   const addNewCard = (card) => {
@@ -70,12 +90,27 @@ function App() {
         newCard
       )
       .then((response) => {
-        console.log(response);
-        setCardsList(newCard);
+        console.log(response.data);
+        const newCardsList = [...cardsList];
+        newCardsList.push(response.data);
+        setCardsList(newCardsList);
       })
       .catch((error) => {
         console.log("Error:", error);
       });
+  };
+
+  // ======= DELETE A CARD =======
+
+  const deleteCard = (card) => {
+    axios
+      .delete(
+        `https://mando-backend.herokuapp.com/boards/${selectedBoard.id}/cards/${card.id}`
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => console.log("Error:", error));
   };
 
   return (
