@@ -79,9 +79,9 @@ function App() {
 
   // ======= ADD NEW CARD =======
 
-  const addNewCard = (card) => {
+  const addNewCard = (Newcard, selectedBoard) => {
     const newCard = {
-      message: card.message,
+      message: Newcard.message,
     };
 
     axios
@@ -113,6 +113,24 @@ function App() {
       .catch((error) => console.log("Error:", error));
   };
 
+  // ======= TOGGLE FORM =======
+  // const [cards, setCards] = useState(props.cards);
+
+  // const [boardFormVisible, setBoardFormVisible] = useState(false);
+  // const [cardFormVisible, setCardFormVisible] = useState(false);
+  // const [buttonTextForm, setButtonTextForm] = useState(
+  //   "Display Add Board Form"
+  // );
+
+  // const toggleBoardForm = () => {
+  //   setBoardFormVisible(!boardFormVisible);
+  //   if (boardFormVisible) {
+  //     setButtonTextForm("Hide Add Board Form");
+  //   } else {
+  //     setButtonTextForm("Display Add Board Form");
+  //   }
+  // };
+
   return (
     <>
       <Header />
@@ -128,6 +146,7 @@ function App() {
         <section className="card__display">{individualCardComponents}</section>
 
         <section>
+          {/* <button onClick={toggleBoardForm}>{buttonTextForm}</button> */}
           <AddForms />
         </section>
       </div>

@@ -1,16 +1,7 @@
 import "./BoardList.css";
 import Board from "./Board";
-import { useState } from "react";
 
 const BoardList = (props) => {
-  console.log(props);
-
-  // const [selectedBoard, setSelectedBoard] = useState(props.boards[1]);
-
-  // const selectBoard = (board) => {
-  //   setSelectedBoard(board);
-  // };
-
   const individualBoardComponents = props.boards.map((board) => {
     return (
       <li key={board.id}>
