@@ -14,7 +14,6 @@ function App() {
   const [cardsList, setCardsList] = useState([]);
 
   // ======= GET ALL BOARDS =======
-
   useEffect(() => {
     axios
       .get("https://mando-backend.herokuapp.com/boards")
@@ -32,9 +31,6 @@ function App() {
     setSelectedBoard(board);
   };
 
-  // need to get cards for selected board
-  // pass down to cardlist -- collection of card components
-
   // ======= GET CARDS FOR SELECTED BOARD =======
   useEffect(() => {
     axios
@@ -47,7 +43,6 @@ function App() {
       })
       .catch((error) => {
         console.log("Error:", error);
-        alert("No cards found");
       });
   }, [selectedBoard]);
 
@@ -74,10 +69,7 @@ function App() {
           />
         </section>
 
-        <section>
-          <h3>cards for selected board</h3>
-          {individualCardComponents}
-        </section>
+        <section className="card__display">{individualCardComponents}</section>
 
         <section>
           <AddForms />

@@ -21,15 +21,18 @@ const Card = (props) => {
 
   return (
     <div className="card">
-      <p>This is a card with a message: {props.message}</p>
+      <p>Message:</p>
+      <p className="card__message">{props.message}</p>
 
-      <button className="card__button" onClick={incrementLikes}>
-        {likesCount}
-      </button>
+      <section className="card__bottom">
+        <button className="card__button" onClick={incrementLikes}>
+          {likesCount}
+        </button>
 
-      <button className="delete__button" onClick={handleDeleteCard}>
-        X
-      </button>
+        <button className="delete__button" onClick={handleDeleteCard}>
+          X
+        </button>
+      </section>
     </div>
   );
 };

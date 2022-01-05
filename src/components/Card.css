@@ -1,31 +1,23 @@
 .card {
-  font-family: "Poppins", sans-serif;
-
   background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 12px 14px 0 rgba(64, 95, 119, 0.302),
-    0 12px 15px 2px rgba(56, 87, 110, 0.149);
-  display: grid;
+  border-radius: 6px;
+  box-shadow: 0 12px 14px 0 rgba(51, 78, 99, 0.302),
+    0 12px 15px 2px rgba(42, 69, 90, 0.149);
   margin: 0 auto;
-  padding: 1rem;
-  width: 60%;
-  padding: 1em 0;
-  margin: 3rem;
-
-  /* min-height: 250px;
-  min-width: 225px;
-  flex-basis: 18%; */
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: rgb(233, 2, 233);
+  width: 35%;
+  padding: 2em;
+  margin: 2rem;
 
   border-radius: 5px;
-
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* align-items: center; */
 }
 
-card__message {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #f31094;
+.card__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card__button {
