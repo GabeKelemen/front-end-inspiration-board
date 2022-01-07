@@ -1,24 +1,25 @@
 import { useState } from "react";
 import "./AddCardForm.css";
 
-const AddCardForm = (onAdd) => {
+const AddCardForm = ({ addNewCard }) => {
   const [message, setMessage] = useState({ message: "" });
 
-  const onSubmitCardForm = (event) => {
+  const handleMessageChange = (event) => {
+    setMessage({ ...message, message: event.target.value });
+  };
+
+  const onSubmitForm = (event) => {
     event.preventDefault();
-    // if (!message || message.length < 40) {
-    //   alert("Please enter a message that is less than 40 characters");
-    //   return;
-    // }
-    onAdd({ message });
-    setMessage({ ...message });
+    addNewCard({ message: message.message });
+    //resets form to blank
+    setMessage({ message: "" });
   };
 
   return (
     <div className="container">
       <h3>Add a New Card</h3>
 
-      <form className="add-form" onSubmit={onSubmitCardForm}>
+      <form className="add-form" onSubmit={onSubmitForm}>
         <div className="form-control">
           <label>Card Message</label>
           <input
@@ -27,11 +28,11 @@ const AddCardForm = (onAdd) => {
             placeholder="Add your message..."
             value={message.message}
             maxLength={40}
-            onChange={(event) => setMessage(event.target.value)}
+            onChange={handleMessageChange}
           />
         </div>
       </form>
-      <input type="submit" value="Add Message" className="card_form_button" />
+      <input type="submit" value="Submit" className="card_form_button" />
     </div>
   );
 };

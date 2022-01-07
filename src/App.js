@@ -2,7 +2,6 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "./components/Header";
-import Board from "./components/Board";
 
 import AddForms from "./components/AddForms";
 import BoardList from "./components/BoardList";
@@ -60,18 +59,19 @@ function App() {
 
   // ======= ADD NEW BOARD =======
 
-  const addNewBoard = (board) => {
-    const newBoard = {
-      title: board.title,
-      owner: board.owner,
-    };
+  const addNewBoard = (newBoard) => {
+    // const newBoard = {
+    //   title: board.title,
+    //   owner: board.owner,
+    // };
     axios
       .post("https://mando-backend.herokuapp.com/boards", newBoard)
       .then((response) => {
         console.log(response);
-        const allBoards = [...allBoardsList];
-        allBoards.push(response.data);
-        setAllBoardsList(allBoards);
+        const newBoards = [...allBoardsList];
+        newBoards["id"].push(response.data.board.id);
+        newBoards.push(newBoard);
+        setAllBoardsList(newBoards);
       })
       .catch((error) => {
         console.log("Error:", error);
@@ -80,9 +80,9 @@ function App() {
 
   // ======= ADD NEW CARD =======
 
-  const addNewCard = (Newcard, selectedBoard) => {
+  const addNewCard = (addNewCard, selectedBoard) => {
     const newCard = {
-      message: Newcard.message,
+      message: newCard.message,
     };
 
     axios
@@ -120,7 +120,7 @@ function App() {
     "Display Add Board Form"
   );
 
-  const toggleBoardForm = () => {
+  const toggleBoardFormButton = () => {
     setBoardFormDisplay(!boardFormDisplay);
     if (boardFormDisplay) {
       setButtonTextForm("Hide Add Board Form");
@@ -128,6 +128,37 @@ function App() {
       setButtonTextForm("Display Add Board Form");
     }
   };
+
+  // const toggleBoardForm = () => {
+  //   if (boardFormDisplay === false) {
+  //     return (
+  //       <section>
+  //         <h3>boardDispaly is false</h3>
+  //         <AddForms />
+  //         <button className="button" onClick={handleToggleBoardForm}>
+  //           {" "}
+  //           {toggleBoardForm} false
+  //         </button>
+  //       </section>
+  //     );
+  //   } else if (boardFormDisplay === true) {
+  //     return (
+  //       <section>
+  //         <h3>boardDispaly is true</h3>
+  //         <button className="button" onClick={handleToggleBoardForm}>
+  //           {toggleBoardForm} true
+  //         </button>
+  //       </section>
+  //     );
+  //   }
+  // };
+  // const handleToggleBoardForm = () => {
+  //   if (boardFormDisplay === false) {
+  //     setBoardFormDisplay(true);
+  //   } else if (boardFormDisplay === true) {
+  //     setBoardFormDisplay(false);
+  //   }
+  // };
 
   return (
     <>
@@ -145,7 +176,9 @@ function App() {
 
         <section>
           <AddForms />
-          <button onClick={toggleBoardForm}>{buttonTextForm}</button>
+          <button className="button" onClick={toggleBoardFormButton}>
+            {buttonTextForm}
+          </button>
         </section>
       </div>
     </>
