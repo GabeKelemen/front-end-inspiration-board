@@ -1,22 +1,12 @@
 import "./Card.css";
-import { useState } from "react";
 
 const Card = (props) => {
-  const [likesCount, setLikesCount] = useState(0);
   const incrementLikes = () => {
-    setLikesCount(likesCount + 1);
+    props.onLike(props.id);
   };
 
   const handleDeleteCard = () => {
-    const currentCardComponents = props.cardsList;
-    for (let card of currentCardComponents) {
-      if (card.id === props.id) {
-        currentCardComponents.splice(card, 1);
-      }
-    }
-    // reset state of cardlist to reflect deletion
-    props.setCardsList(currentCardComponents);
-    props.handleDeleteCard(props.id, props.selectedBoard);
+    props.onDelete(props.id);
   };
 
   return (
@@ -26,7 +16,7 @@ const Card = (props) => {
 
       <section className="card__bottom">
         <button className="card__button" onClick={incrementLikes}>
-          {likesCount}
+          {props.likes}
         </button>
 
         <button className="delete__button" onClick={handleDeleteCard}>
