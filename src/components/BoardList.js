@@ -20,7 +20,7 @@ const BoardList = (props) => {
       <div className="selectedboard">
         <h3>The Board You Selected:</h3>
 
-        <h2>{props.selectedBoard.title}</h2>
+        <h2>{props.selectedBoard?.title || "no selection"}</h2>
       </div>
     </>
   );

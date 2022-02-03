@@ -31,8 +31,8 @@ const AddCardForm = ({ addNewCard }) => {
             onChange={handleMessageChange}
           />
         </div>
+        <input type="submit" value="Submit" className="card_form_button" />
       </form>
-      <input type="submit" value="Submit" className="card_form_button" />
     </div>
   );
 };

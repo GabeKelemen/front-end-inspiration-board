@@ -2,7 +2,7 @@ import AddCardForm from "./AddCardForm";
 import AddBoardForm from "./AddBoardForm";
 import "./AddForms.css";
 
-const AddForms = ({ addNewCard, cardList, selectedBoard, addNewBoard }) => {
+const AddForms = ({ addNewCard, addNewBoard, displayBoardForm }) => {
   return (
     <>
       <div className="form__header">
@@ -11,15 +11,13 @@ const AddForms = ({ addNewCard, cardList, selectedBoard, addNewBoard }) => {
 
       <section className="forms-panel">
         <div>
-          <AddBoardForm addNewBoard={addNewBoard} />
+          { displayBoardForm || <AddBoardForm addNewBoard={addNewBoard} />}
           <p></p>
         </div>
 
         <div>
           <AddCardForm
-            addThisNewCard={addNewCard}
-            cardList={cardList}
-            selectedBoard={selectedBoard}
+            addNewCard={addNewCard}
           />
         </div>
       </section>

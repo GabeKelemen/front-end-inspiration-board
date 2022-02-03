@@ -9,7 +9,7 @@ import Card from "./components/Card";
 
 function App() {
   const [allBoardsList, setAllBoardsList] = useState([]);
-  const [selectedBoard, setSelectedBoard] = useState([]);
+  const [selectedBoard, setSelectedBoard] = useState(null);
   const [cardsList, setCardsList] = useState([]);
   const [boardFormDisplay, setBoardFormDisplay] = useState(false);
 
@@ -31,11 +31,10 @@ function App() {
     setSelectedBoard(board);
   };
 
-  // ======= GET CARDS FOR SELECTED BOARD =======
-  useEffect(() => {
+  const getCards = (boardId) => {
     axios
       .get(
-        `https://mando-backend.herokuapp.com/boards/${selectedBoard.id}/cards`
+        `https://mando-backend.herokuapp.com/boards/${boardId}/cards`
       )
       .then((response) => {
         console.log(response.data);
@@ -44,18 +43,14 @@ function App() {
       .catch((error) => {
         console.log("Error:", error);
       });
-  }, [selectedBoard]);
+  };
 
-  const individualCardComponents = cardsList.map((card) => {
-    return (
-      <Card
-        key={card.id}
-        id={card.id}
-        message={card.message}
-        likes={card.likes}
-      />
-    );
-  });
+  // ======= GET CARDS FOR SELECTED BOARD =======
+  useEffect(() => {
+    if (! selectedBoard) { return; }
+
+    getCards(selectedBoard.id);
+  }, [selectedBoard]);
 
   // ======= ADD NEW BOARD =======
 
@@ -69,7 +64,7 @@ function App() {
       .then((response) => {
         console.log(response);
         const newBoards = [...allBoardsList];
-        newBoards["id"].push(response.data.board.id);
+        newBoard["id"] = response.data.id;
         newBoards.push(newBoard);
         setAllBoardsList(newBoards);
       })
@@ -80,9 +75,11 @@ function App() {
 
   // ======= ADD NEW CARD =======
 
-  const addNewCard = (addNewCard, selectedBoard) => {
+  const addNewCard = (cardData) => {
+    if (! selectedBoard) { return; }
+
     const newCard = {
-      message: newCard.message,
+      message: cardData.message,
     };
 
     axios
@@ -92,9 +89,7 @@ function App() {
       )
       .then((response) => {
         console.log(response.data);
-        const newCardsList = [...cardsList];
-        newCardsList.push(response.data);
-        setCardsList(newCardsList);
+        getCards(selectedBoard.id)
       })
       .catch((error) => {
         console.log("Error:", error);
@@ -103,21 +98,49 @@ function App() {
 
   // ======= DELETE A CARD =======
 
-  const deleteCard = (card) => {
+  const deleteCard = (cardId) => {
     axios
       .delete(
-        `https://mando-backend.herokuapp.com/boards/${selectedBoard.id}/cards/${card.id}`
+        `https://mando-backend.herokuapp.com/cards/${cardId}`
       )
       .then((response) => {
         console.log(response.data);
+        getCards(selectedBoard.id);
       })
       .catch((error) => console.log("Error:", error));
   };
 
+  // ======= LIKE A CARD =======
+
+  const likeCard = (cardId) => {
+    axios
+      .patch(
+        `https://mando-backend.herokuapp.com/cards/${cardId}/upvote`
+      )
+      .then((response) => {
+        console.log(response.data);
+        getCards(selectedBoard.id);
+      })
+      .catch((error) => console.log("Error:", error));
+  };
+
+  const individualCardComponents = cardsList.map((card) => {
+    return (
+      <Card
+        key={card.id}
+        id={card.id}
+        message={card.message}
+        likes={card.like_count}
+        onLike={likeCard}
+        onDelete={deleteCard}
+      />
+    );
+  });
+
   // ======= TOGGLE FORM =======
 
   const [buttonTextForm, setButtonTextForm] = useState(
-    "Display Add Board Form"
+    "Hide Add Board Form"
   );
 
   const toggleBoardFormButton = () => {
@@ -175,7 +198,11 @@ function App() {
         <section className="card__display">{individualCardComponents}</section>
 
         <section>
-          <AddForms />
+          <AddForms 
+            addNewCard={addNewCard}
+            addNewBoard={addNewBoard}
+            displayBoardForm={boardFormDisplay}
+            />
           <button className="button" onClick={toggleBoardFormButton}>
             {buttonTextForm}
           </button>

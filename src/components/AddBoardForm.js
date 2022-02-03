@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddBoardForm = (onAdd) => {
+const AddBoardForm = ({addNewBoard}) => {
   const [title, setTitle] = useState("");
   const [owner, setOwner] = useState("");
 
@@ -10,7 +10,7 @@ const AddBoardForm = (onAdd) => {
       alert("Please enter a title and owner name");
       return;
     }
-    onAdd({ title, owner });
+    addNewBoard({ title, owner });
     setTitle("");
     setOwner("");
   };
@@ -38,12 +38,12 @@ const AddBoardForm = (onAdd) => {
             onChange={(event) => setOwner(event.target.value)}
           />
         </div>
-      </form>
       <input
         type="submit"
         value="Add Board Form"
         className="card_form_button"
       />
+      </form>
     </div>
   );
 };
